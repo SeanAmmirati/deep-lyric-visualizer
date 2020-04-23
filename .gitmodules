@@ -1,0 +1,3 @@
+[submodule "src/deep-music-visualizer"]
+	path = src/deep-music-visualizer
+	url = https://github.com/msieg/deep-music-visualizer
