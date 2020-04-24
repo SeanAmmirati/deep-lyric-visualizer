@@ -46,28 +46,6 @@ class Tokenizer(GeneratorObject):
 
         return tokens
 
-    def tokenize_lyrics(self, songname, process=True):
-
-        self.lrc_str = self.env.read_lrc_file(songname)
-
-        self.lyric_list = self.lrc_to_lyric_list(self.lrc_str)
-        logger.info(f'Tokenizing lyrics for song {songname}')
-
-        tokens_list = [word_tokenize(lyric_line)
-                       for lyric_line in self.lyric_list]
-        logger.debug('Generated token list from lines of lrc file.')
-
-        if process:
-            tokens_list = [self._process_tokens(
-                tokens) for tokens in tokens_list]
-            logger.info(f'All tokens processed.')
-        else:
-            logger.debug(
-                'Processing flag is false. Simply returning raw tokens.')
-
-        self.tokens_list = tokens_list
-        return tokens_list
-
     def _process_tokens(self, tokens):
         logger.debug(f'Tokens: {tokens} -- Processing start...')
 
@@ -96,16 +74,6 @@ class Tokenizer(GeneratorObject):
 
     def load(self, songname=None):
         self.genio.load(songname)
-
-    def lrc_to_lyric_list(self, lrc_str):
-        """Returns a generator with each line of lyrics, with no timestamps.
-
-        Arguments:
-            lrc_file_path {str} -- A string representation of a valid lrc file format.
-        """
-        logger.debug('Converting lrc file to list of lyric strings.')
-
-        return [x.text for x in pylrc.parse(lrc_str)]
 
     def save(self, songname=None):
         """Exports generated tokens for future use
