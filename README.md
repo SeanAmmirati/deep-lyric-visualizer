@@ -5,11 +5,7 @@ An enhancement to a [GAN music visualizer](https://github.com/msieg/deep-music-v
 in a song to select categories for visualization.
 
 
-The result is something like this:
-
-```html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/kkpWfGzoems" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-```
+The result is something like this [YouTube video example.](https://www.youtube.com/embed/kkpWfGzoems)
 
 # Description
 
