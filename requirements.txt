@@ -51,7 +51,7 @@ numba==0.46.0
 numpy==1.17.4
 olefile==0.46
 pandas==0.25.3
-Pillow==5.3.0
+Pillow>=6.2.2
 pycodestyle==2.5.0
 pycparser==2.19
 pyflakes==2.1.1
