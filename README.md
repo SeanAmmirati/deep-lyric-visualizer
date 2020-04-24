@@ -1,5 +1,16 @@
-deep-lyric-visualizer
+Deep Lyric Visualizer -- GANs
 ==============================
+
+An enhancement to a [GAN music visualizer](https://github.com/msieg/deep-music-visualizer) that uses contextual lyric information
+in a song to select categories for visualization.
+
+
+The result is something like this:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kkpWfGzoems" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+# Description
 
 This project is the very start of some ideas surrounding trying to take some
 things that have already been done in this space in terms of music visualization
