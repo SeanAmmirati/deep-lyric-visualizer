@@ -5,7 +5,9 @@ An enhancement to a [GAN music visualizer](https://github.com/msieg/deep-music-v
 in a song to select categories for visualization.
 
 
-The result is something like this [YouTube video example.](https://www.youtube.com/embed/kkpWfGzoems)
+The result is something like this:
+
+ [![YouTube video example.](https://img.youtube.com/vi/kkpWfGzoems/0.jpg)](https://www.youtube.com/embed/kkpWfGzoems)
 
 # Description
 
