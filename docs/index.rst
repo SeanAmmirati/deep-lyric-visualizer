@@ -14,13 +14,6 @@ Contents:
    getting-started
    commands
 
-.. automodule:: generator.generatorio
-   :members:
-
-.. automodule:: generator.generation_environment
-   :members:
-
-
 
 
 Indices and tables
