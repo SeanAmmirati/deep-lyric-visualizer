@@ -15,6 +15,19 @@ logger = logging.getLogger(__name__)
 class GenerationEnvironment(ABC):
 
     def __init__(self, cfg=None):
+        """A class handling the filesystem and loading of external files for
+        the generation project.
+
+        Args:
+            cfg (str, optional): A path to a custom configuration file. This
+            file should be in a similar structure to the one found in
+            config/default_cfg.yaml. Check here for context.
+            Defaults to None, which will use the deafault configuration file.
+
+        Raises:
+            ValueError: Raised when a file is not found at the location
+            specified for the configuration.
+        """
         logger.debug('Started initialization of GenerationEnvironment')
 
         if cfg:
@@ -32,47 +45,123 @@ class GenerationEnvironment(ABC):
                     self.cfg = yaml.load(f)
                 except Exception as e:
                     logger.error(
-                        f'Could not load configuration file. Ensure that the file at {self._config_file_loc} is in the correct format')
+                        'Could not load configuration file. Ensure that the '
+                        f'file at {self._config_file_loc} is in the correct '
+                        'format')
                     raise
                 else:
                     logger.debug(
-                        f'Succesfully loaded yaml file at {self._config_file_loc}.')
+                        'Succesfully loaded yaml file at '
+                        f'{self._config_file_loc}.')
         else:
             logger.error(
-                f'File does not exist at {self._config_file_loc}. Ensure that it has been entered correctly')
+                f'File does not exist at {self._config_file_loc}. '
+                'Ensure that it has been entered correctly')
             raise ValueError
 
         logger.debug(
-            'Assigning key value pairs from configuration dictionary to attributes of the instance')
+            'Assigning key value pairs from configuration dictionary to '
+            'attributes of the instance')
         dict_assign(self, self.cfg)
         self.wordvec_dim = 0
 
     def song_lyric_dir(self, songname):
+        """Returns the full path of a particular song's lyric directory.
+
+        Args:
+            songname (str): The songname to find the directory for.
+
+        Returns:
+            str: The directory containing lyric data for the song.
+        """
         return os.path.join(self.LYRIC_PATH, songname)
 
     def song_embeddings_dir(self, songname):
+        """Returns the full path of a particular song's embedding directory.
+
+        Args:
+            songname (str): The songname to find the directory for.
+
+        Returns:
+            str: The directory containing embedding data for the song.
+        """
         return os.path.join(self.SONG_EMBEDDING_PATH, songname)
 
-    def song_embeddings_filename(self, songname):
-        return os.path.join(self.song_embeddings_dir(songname), self.LYRIC_EMBEDDING_FILENAME + '.' + self.SAVE_FILETYPE)
-
     def song_lyric_filename(self, songname):
-        return os.path.join(self.song_lyric_dir(songname), self.TOKEN_FILENAME + '.' + self.SAVE_FILETYPE)
+        """Returns the full path of a particular song's token file.
+
+        Args:
+            songname (str): The songname to find the directory for.
+
+        Returns:
+            str: The path of the file containing lyric data for the song.
+        """
+        fn_with_ext = self.TOKEN_FILENAME + '.' + self.SAVE_FILETYPE
+        return os.path.join(self.song_lyric_dir(songname), fn_with_ext)
+
+    def song_embeddings_filename(self, songname):
+        """Returns the full path of a particular song's embedding file
+
+        Args:
+            songname (str): The songname to find the directory for.
+
+        Returns:
+            str: The path of the file containing embedding data for the song.
+        """
+        fn_with_ext = self.LYRIC_EMBEDDING_FILENAME + '.' + self.SAVE_FILETYPE
+        return os.path.join(self.song_embeddings_dir(songname),
+                            fn_with_ext)
 
     def model_loc(self, model_name):
+        """Returns the full path of the model with a particular name.
+
+        Args:
+            model_name (str): the name of the model (with extension)
+
+        Returns:
+            str: The full path of the model
+        """
         return os.path.join(self.MODELS_PATH, model_name)
 
     def image_class_location(self):
-        return os.path.join(self.DATA_DIR, self.IMAGE_CLASS_FILENAME + '.yml')
+        """Returns the location of the image classes file
+
+        Returns:
+            str: A full path to the file with the image classes
+        """
+        fn_with_ext = self.IMAGE_CLASS_FILENAME + '.' + self.SAVE_FILETYPE
+        return os.path.join(self.DATA_DIR, fn_with_ext)
 
     def class_embeddings_filename(self):
-        return os.path.join(self.DATA_DIR, self.CATEGORY_EMBEDDING_FILENAME + '.' + self.SAVE_FILETYPE)
+        """Returns the location of the class embeddings file
+
+        Returns:
+            str: full path to the class embeddings file
+        """
+        fn_with_ext = self.CATEGORY_EMBEDDING_FILENAME + '.'\
+            + self.SAVE_FILETYPE
+        return os.path.join(self.DATA_DIR, fn_with_ext)
 
     def class_token_filename(self):
-        return os.path.join(self.DATA_DIR, self.CATEGORY_TOKEN_FILENAME + '.' + self.SAVE_FILETYPE)
+        """Returns the location of the tokenized classes for ImageNet
+
+        Returns:
+            [type]: [description]
+        """
+        fn_with_ext = self.CATEGORY_TOKEN_FILENAME + '.' + self.SAVE_FILETYPE
+        return os.path.join(self.DATA_DIR, fn_with_ext)
 
     def complete_lyrics_filename(self, songname):
-        return os.path.join(self.song_lyric_dir(songname), self.FULL_LYRIC_FILENAME + '.' + self.SAVE_FILETYPE)
+        """[summary]
+
+        Args:
+            songname ([type]): [description]
+
+        Returns:
+            [type]: [description]
+        """
+        fn_with_ext = self.FULL_LYRIC_FILENAME + '.' + self.SAVE_FILETYPE
+        return os.path.join(self.song_lyric_dir(songname), fn_with_ext)
 
     def find_lrc_file(self, songname):
         songname_dir = self.song_lyric_dir(songname)
@@ -82,10 +171,12 @@ class GenerationEnvironment(ABC):
             f'Searching {self.LYRIC_PATH} for directory {songname}')
         if os.path.exists(songname_dir):
             logger.debug(
-                f'Found directory {songname} in lyric directory: {self.LYRIC_PATH}')
+                f'Found directory {songname} in lyric directory: '
+                f'{self.LYRIC_PATH}')
         else:
             logger.error(
-                f'No such song directory {songname} in {self.LYRIC_PATH}. Have you created the directory?', exc_info=True)
+                f'No such song directory {songname} in {self.LYRIC_PATH}. '
+                'Have you created the directory?', exc_info=True)
             raise ValueError('Incorrect songname passed.')
 
         logger.debug(
