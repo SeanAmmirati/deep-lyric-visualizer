@@ -84,3 +84,4 @@ wikipedia2vec==1.0.4
 word2vec==0.9.4+2.g8204e5c
 wrapt==1.11.2
 sphinx-autoapi
+recommonmark
