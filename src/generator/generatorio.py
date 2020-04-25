@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
+from generation_environment import (GenerationEnvironment,
+                                    WikipediaBigGANGenerationEnviornment)
 import logging
 from helpers import setup_logger
 
@@ -31,14 +32,16 @@ class GeneratorIO(ABC):
 
         if not gen_env:
             logger.info(
-                'No passed enviornment class. Defaulting to Wikipedia2Vec and BigGAN.')
+                'No passed enviornment class. '
+                'Defaulting to Wikipedia2Vec and BigGAN.')
 
             gen_env = WikipediaBigGANGenerationEnviornment()
 
         else:
             if not isinstance(gen_env, GenerationEnvironment):
                 logger.error(
-                    'Argument gen_env is not a GenerationEnvironment instance. You must pass the appropriate object here.')
+                    'Argument gen_env is not a GenerationEnvironment instance.'
+                    ' You must pass the appropriate object here.')
                 raise ValueError('Not a Generation Environment instance.')
             else:
                 logger.info('Custom enviornment class passed.')
@@ -65,7 +68,8 @@ class GeneratorIO(ABC):
         a songs' data.
 
         Args:
-            songname ([type], optional): ame of the song, if necessary. Defaults to None.
+            songname ([type], optional): ame of the song, if necessary.
+            Defaults to None.
 
         Returns:
             str: The path of the save location of the file for that object.
@@ -93,7 +97,8 @@ class GeneratorIO(ABC):
         not exist.
 
         Args:
-            songname ([type], optional): ame of the song, if necessary. Defaults to None.
+            songname ([type], optional): ame of the song, if necessary.
+            Defaults to None.
         """
 
         full_path = self.get_saving_location(
@@ -158,24 +163,24 @@ class GeneratorIO(ABC):
 
         Args:
             songname (str, optional): The name of the song. Defaults to None.
-          """
-          self.save_loc = self.get_saving_location(songname)
-           try:
-                res = self.load_from_file(self.save_loc)
-            except FileNotFoundError:
-                logger.error(f'No file to load in {self.save_loc}')
-                raise
-            for i, r in enumerate(res):
-                logger.debug(f'Loading {r} into {self.attrs[i]} attribute.')
-                setattr(self.obj, self.transform_load(self.attrs[i]), r)
+        """
+        self.save_loc = self.get_saving_location(songname)
+        try:
+            res = self.load_from_file(self.save_loc)
+        except FileNotFoundError:
+            logger.error(f'No file to load in {self.save_loc}')
+            raise
+        for i, r in enumerate(res):
+            logger.debug(f'Loading {r} into {self.attrs[i]} attribute.')
+            setattr(self.obj, self.transform_load(self.attrs[i]), r)
 
-            logger.info(
-                f'Loaded information for {self.obj.name} from {self.save_loc}')
+        logger.info(
+            f'Loaded information for {self.obj.name} from {self.save_loc}')
 
     @abstractmethod
     def load_from_file(self, where):
         """An abstract method -- this describes the actual loading process.
-        This will vary based on the file type (for instance, pickle, yaml, etc.)
+        This will vary based on the file type (for instance, pickle, yaml, etc)
 
         Args:
             where (str): The path to load the attributes from
@@ -185,7 +190,7 @@ class GeneratorIO(ABC):
     @abstractmethod
     def save_to_file(self, x, where):
         """An abstract method -- this describes the actual saving process.
-        This will bary bsased on the file type (for instance, pickle, yaml, etc.)
+        This will bary based on the file type (for instance, pickle, yaml, etc)
 
         Args:
             x (Object): An object to save
