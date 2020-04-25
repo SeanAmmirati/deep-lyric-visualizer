@@ -13,7 +13,7 @@ The result is something like this:
 
 This project is the very start of some ideas surrounding trying to take some
 things that have already been done in this space in terms of music visualization
-using GAN (from [this repository](https://github.com/msieg/deep-music-visualizer)
+using GAN (from [this repository](https://github.com/msieg/deep-music-visualizer))
 and adding a lyrical element.
 
 This is very simplistic at the moment, and was part of a side project for fun.

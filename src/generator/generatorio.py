@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from generation_environment import (GenerationEnvironment,
-                                    WikipediaBigGANGenerationEnviornment)
+from generator.generation_environment import (GenerationEnvironment,
+                                              WikipediaBigGANGenerationEnviornment)
 import logging
 from helpers import setup_logger
 

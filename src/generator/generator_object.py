@@ -1,5 +1,5 @@
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
-from generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from generator.generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
+from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 from helpers import setup_logger
 import logging
 

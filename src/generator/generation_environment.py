@@ -146,24 +146,38 @@ class GenerationEnvironment(ABC):
         """Returns the location of the tokenized classes for ImageNet
 
         Returns:
-            [type]: [description]
+            str: A full path to the file with the image class tokens
         """
         fn_with_ext = self.CATEGORY_TOKEN_FILENAME + '.' + self.SAVE_FILETYPE
         return os.path.join(self.DATA_DIR, fn_with_ext)
 
     def complete_lyrics_filename(self, songname):
-        """[summary]
+        """Returns the location of the processed lyrics, with categories
+        associated with portions of the lyrics.
 
         Args:
-            songname ([type]): [description]
+            songname (str): The name of the song.
 
         Returns:
-            [type]: [description]
+            str: A full path to the file with the processed lyrics and
+            categories
         """
         fn_with_ext = self.FULL_LYRIC_FILENAME + '.' + self.SAVE_FILETYPE
         return os.path.join(self.song_lyric_dir(songname), fn_with_ext)
 
     def find_lrc_file(self, songname):
+        """Finds the .lrc file for a song
+
+        Args:
+            songname (str): The name of the song to find.
+
+        Raises:
+            ValueError: If a songname that is not a directory is entered, this
+            will be raised.
+
+        Returns:
+            str: The path of the lrc file for the specified song
+        """
         songname_dir = self.song_lyric_dir(songname)
         logger.debug('Searching for lrc file.')
 
@@ -187,6 +201,14 @@ class GenerationEnvironment(ABC):
         return lrc_file
 
     def read_lrc_file(self, songname):
+        """Given a songname, reads the appropriate .lrc file
+
+        Args:
+            songname (str): The name of the song to find the .lrc file for.
+
+        Returns:
+            str: The text of the .lrc file.
+        """
         logger.info(f'Reading lrc file for song {songname}')
         lrc_file = self.find_lrc_file(songname)
         try:
@@ -194,7 +216,8 @@ class GenerationEnvironment(ABC):
                 ret = f.read()
         except TypeError:
             logger.error(
-                f'Could not find a lrc file in the {songname} directory. Have you created it?', exc_info=True)
+                f'Could not find a lrc file in the {songname} directory. '
+                'Have you created it?', exc_info=True)
             raise
         else:
             logger.info(f'Succesfully read lrc file for {songname}.')
@@ -202,6 +225,13 @@ class GenerationEnvironment(ABC):
         return ret
 
     def read_id_to_img_class(self):
+        """Loads the image classes into memory. Based on the image classes
+        from ImageNet.
+
+        Returns:
+            dict: A dictionary containing the id number and name of the category
+            for classes on ImageNet.
+        """
         loc = self.image_class_location()
         logger.debug(f'Loading image class yaml file from {loc}')
         try:
@@ -209,7 +239,8 @@ class GenerationEnvironment(ABC):
                 ret = yaml.load(f)
         except FileNotFoundError:
             logger.error(
-                f'Could not find class yaml file at {loc}. Is the location correctly specified?')
+                f'Could not find class yaml file at {loc}. '
+                'Is the location correctly specified?')
             raise
         else:
             logger.debug(f'Succesfully loaded image to classes yaml file.')
@@ -217,16 +248,29 @@ class GenerationEnvironment(ABC):
 
     @abstractmethod
     def word_embedder(self):
+        """This method should return the appropriate word embedder model.
+        The structure (methods, etc) should be similar to that of
+        Wikipedia2Vec.
+        """
         pass
 
     @abstractmethod
     def gan_network(self):
+        """This method should return the appropriate GAN Network model.
+        The structure (methods, etc.) should be similar to that of GAN Network.
+        """
         pass
 
 
 class WikipediaBigGANGenerationEnviornment(GenerationEnvironment):
 
     def word_embedder(self):
+        """Sets up the Wikipedia2Vec model from the default file used by this
+        application.
+
+        Returns:
+            Wikipedia2Vec: A Wikipedia2Vec Model
+        """
         loc = self.model_loc('enwiki_20180420_100d.pkl')
         self.wordvec_dim = 100
         logger.info(f'Loading Wikipedia2Vec word embeddings model from {loc}.')
@@ -234,6 +278,15 @@ class WikipediaBigGANGenerationEnviornment(GenerationEnvironment):
         return model
 
     def gan_network(self, resolution):
+        """Sets up the BigGAN model from the default file used by this
+        application.
+
+        Args:
+            resolution (int): The resolution of BIGGAN to load
+
+        Returns:
+            BigGAN: A BigGAN model
+        """
         logger.info(f'Loading BigGAN with resolution {resolution}.')
         model = BigGAN.from_pretrained(f'biggan-deep-{resolution}')
         return model

@@ -14,7 +14,10 @@ Contents:
    getting-started
    commands
 
-.. automodule:: generatorio
+.. automodule:: generator.generatorio
+   :members:
+
+.. automodule:: generator.generation_environment
    :members:
 
 
