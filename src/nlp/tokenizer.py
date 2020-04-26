@@ -18,7 +18,10 @@ class Tokenizer(GeneratorObject):
 
         super().__init__(gen_env)
         self.tokens = None
+
         self.name = __name__
+        import pdb
+        pdb.set_trace()
 
         self.attrs = ['tokens']
 

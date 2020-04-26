@@ -1082,5 +1082,13 @@ def find_first_file_with_ext(dir_path, ext):
     return match_file
 
 
+def _extract_name_from_path(path):
+    module = os.path.splitext(os.path.basename(path))[0]
+    parent = os.path.basename(os.path.dirname(path))
+    python_name = f'{parent}.{module}'
+
+    return python_name
+
+
 if __name__ == '__main__':
     create_imagenet_yaml()
