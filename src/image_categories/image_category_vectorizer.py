@@ -2,7 +2,7 @@ import os
 import yaml
 import pickle
 import logging
-from helpers import setup_logger
+from helpers import setup_logger, _extract_name_from_path
 from generator.generation_environment import (GenerationEnvironment,
                                               WikipediaBigGANGenerationEnviornment)
 from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
@@ -17,7 +17,8 @@ class ImageCategoryVectorizer(Vectorizer):
     def __init__(self, gen_env=None):
         super().__init__(gen_env)
 
-        self.name = __name__ if __name__ != '__main__' else 'image_category_vectorizer'
+        self.name = __name__ if __name__ != '__main__' else _extract_name_from_path(
+            __file__)
         self.vectorized_dict = None
 
         self.attrs = ['vectorized_dict']

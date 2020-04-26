@@ -1,5 +1,5 @@
 import logging
-from helpers import setup_logger
+from helpers import setup_logger, _extract_name_from_path
 
 from lyrics.lyric_tokenizer import LyricTokenizer
 from lyrics.lyric_vectorizer import LyricVectorizer
@@ -23,7 +23,8 @@ class Lyrics(GeneratorObject):
     def __init__(self, songname, tokenizer=None, vectorizer=None, gen_env=None):
 
         super().__init__(gen_env)
-        self.name = __name__ if __name__ != '__main__' else 'lyrics'
+        self.name = __name__ if __name__ != '__main__' else _extract_name_from_path(
+            __file__)
 
         self.songname = songname
 
@@ -57,7 +58,8 @@ class Lyrics(GeneratorObject):
         self._lrc_str = None
         self._lrc_obj = None
         self.topics = None
-        self.name = __name__ if __name__ != '__main__' else 'lyrics'
+        self.name = __name__ if __name__ != '__main__' else _extract_name_from_path(
+            __file__)
         self.attrs = ['_tokens', '_word_to_vec',
                       '_lyric_list', '_lrc_str', '_lrc_obj']
 

@@ -1,6 +1,6 @@
 
 import logging
-from helpers import setup_logger
+from helpers import setup_logger, _extract_name_from_path
 
 from nlp.tokenizer import Tokenizer
 from image_categories.image_category_vectorizer import ImageCategoryVectorizer
@@ -14,7 +14,8 @@ class ImageCategoryTokenizer(Tokenizer):
     def __init__(self, gen_env=None):
         super().__init__(gen_env)
 
-        self.name = __name__ if __name__ != '__main__' else 'image_category_tokenizer'
+        self.name = __name__ if __name__ != '__main__' else _extract_name_from_path(
+            __file__)
         self.image_classes = None
         self.class_tokens = None
 
