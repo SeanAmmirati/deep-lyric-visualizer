@@ -3,10 +3,11 @@ import yaml
 import pickle
 import logging
 from helpers import setup_logger
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
-from generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from generator.generation_environment import (GenerationEnvironment,
+                                              WikipediaBigGANGenerationEnviornment)
+from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 
-from vectorizer import Vectorizer
+from nlp.vectorizer import Vectorizer
 import numpy as np
 setup_logger()
 logger = logging.getLogger(__name__)

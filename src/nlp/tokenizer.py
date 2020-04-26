@@ -2,18 +2,12 @@
 import logging
 from helpers import setup_logger, dict_assign, find_first_file_with_ext
 
-from generator_object import GeneratorObject
+from generator.generator_object import GeneratorObject
 
 from nltk.tokenize import word_tokenize
-
-import re
-import os
-
-import pylrc
-
 from nltk.corpus import stopwords as nltk_stopwords
 
-from generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 setup_logger()
 logger = logging.getLogger(__name__)
 

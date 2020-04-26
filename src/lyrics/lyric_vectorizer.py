@@ -6,7 +6,7 @@ from helpers import setup_logger
 from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
 import numpy as np
 
-from vectorizer import Vectorizer
+from nlp.vectorizer import Vectorizer
 setup_logger()
 logger = logging.getLogger(__name__)
 

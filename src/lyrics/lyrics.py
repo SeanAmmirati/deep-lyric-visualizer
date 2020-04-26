@@ -1,10 +1,10 @@
 import logging
 from helpers import setup_logger
 
-from lyric_tokenizer import LyricTokenizer
-from lyric_vectorizer import LyricVectorizer
+from lyrics.lyric_tokenizer import LyricTokenizer
+from lyrics.lyric_vectorizer import LyricVectorizer
 
-from lyric_line_assigner import LyricLineAssigner
+from lyrics.lyric_line_assigner import LyricLineAssigner
 
 from generator_object import GeneratorObject
 

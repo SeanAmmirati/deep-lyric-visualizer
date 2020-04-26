@@ -11,7 +11,7 @@ import os
 import pylrc
 
 
-from generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 setup_logger()
 logger = logging.getLogger(__name__)
 

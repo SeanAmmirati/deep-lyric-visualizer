@@ -3,8 +3,8 @@ import yaml
 import pickle
 import logging
 from helpers import setup_logger
-from generator_object import GeneratorObject
-from generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from generator.generator_object import GeneratorObject
+from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 
 import numpy as np
 setup_logger()

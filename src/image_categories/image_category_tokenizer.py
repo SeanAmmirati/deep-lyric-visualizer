@@ -2,8 +2,8 @@
 import logging
 from helpers import setup_logger
 
-from tokenizer import Tokenizer
-from image_category_vectorizer import ImageCategoryVectorizer
+from nlp.tokenizer import Tokenizer
+from image_categories.image_category_vectorizer import ImageCategoryVectorizer
 
 
 setup_logger()
