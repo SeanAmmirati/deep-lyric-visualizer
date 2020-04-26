@@ -1014,28 +1014,36 @@ def create_imagenet_yaml(output_filename='image_classes.yml'):
 def setup_logger(path='config/logging.yaml',
                  level=logging.INFO,
                  env_key='LOG_CFG_LOC'):
-    """
-    Sets up the logger for the library, using a yaml file or, if none exists, using the default settings.
+    """Sets up the logger for the library, using a yaml file or, if none
+    exists, using the default settings.
 
-    Keyword Arguments:
-        path {str} -- Path where the yaml configuration for logging is stored. (default: {'cfg/logging.yaml'})
-        level {int} -- The level to record information above. Use logging.DEBUG, logging.INFO, logging.WARNING, etc. (default: {logging.INFO})
-        env_key {str} -- Environment variable to refer to logging location. (default: {'LOG_CFG_LOC'})
+    To use a custom logger, feel free to delete the file in config.
+
+    Args:
+        path (str, optional): Path where the yaml configuration for logging
+        is stored. Defaults to 'config/logging.yaml'.
+
+        level (int, optional): The level to record information above.
+        Use logging.DEBUG, logging.INFO, logging.WARNING, etc.
+        Defaults to logging.INFO.
+
+        env_key (str, optional): Environment variable to refer to logging
+        location. Defaults to 'LOG_CFG_LOC'.
     """
+
     env_res = os.getenv(env_key, None)
     if env_res:
         path = env_res
+
+    if os.path.exists(path):
+        with open(path, 'r') as f:
+            config = yaml.load(f)
+        logging.config.dictConfig(config)
     else:
-        if os.path.exists(path):
-            with open(path, 'r') as f:
-                config = yaml.load(f)
-            logging.config.dictConfig(config)
-        else:
-            logging.basicConfig(level=level)
+        logging.basicConfig(level=level)
 
 
 setup_logger()
-
 logger = logging.getLogger(__name__)
 
 

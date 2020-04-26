@@ -1,10 +1,11 @@
 import logging
 from helpers import setup_logger
 
-from image_category_tokenizer import ImageCategoryTokenizer
-from image_category_vectorizer import ImageCategoryVectorizer
+from image_categories.image_category_tokenizer import ImageCategoryTokenizer
+from image_categories.image_category_vectorizer import ImageCategoryVectorizer
 
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
+from generator.generation_environment import (GenerationEnvironment,
+                                              WikipediaBigGANGenerationEnviornment)
 
 setup_logger()
 logger = logging.getLogger(__name__)
