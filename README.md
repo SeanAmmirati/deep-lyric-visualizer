@@ -35,12 +35,18 @@ free to reach out.
 
 In order to use this repository, you must first do a few things.
 
-1. Select an appropriate word embedding model. You can train your own model, or
+1. **Select an appropriate word embedding model.** You can train your own model, or
 used a pretrained model. This project assumes use of the [Wikipedia2Vec model.](https://wikipedia2vec.github.io/wikipedia2vec).
 
-2. Select an appropriate model to fit the General Adverserial Network (GAN).
+2. **Select an appropriate model to fit the General Adverserial Network (GAN).**
 Again, you can train your own model or use a pretrained model. This project
  assumes use of [BigGAN.](https://arxiv.org/abs/1809.11096)
+
+3. **Set up the mp3 file and the .lrc file for the song.** You must have an .mp3
+file for the song that you wish to create a visualization for, as well as a
+.lrc file for the lyrics. To generate one of these yourself, try using
+[this website](https://lrcgenerator.com/) with lyrics sourced from the common
+lyric sources -- Genius, AZLyrics, etc.
 
 ### Embedder
 
@@ -70,11 +76,35 @@ If you would like to use another embedder, you should create a subclass of the
 objects in this repository (so called `GeneratorObjects`) take the
 `GenerationEnvironment` as a parameter.
 
+Simply add a method named `word_embedder` and have this method return the model.
+This was done to make the process flexible.
+
 Note that you will need to ensure that the API for the loaded classes matches
 that of Wikipedia2Vec for this to work out of the box for methods used by the
 vectorizer class. As of this writing, the only such method is the
 `get_word_vector` method, which should be straight-forward to port from
 other models.
+
+
+### GAN
+
+#### Using the default GAN
+
+There is no setup necessary to use the default GAN, as this will be loaded by
+BigGAN.
+
+#### Using a custom GAN
+
+If you would like to use another GAN, you should create a subclass of the
+`GenerationEnvironment` class in `generation_environment.py`. All of the
+objects in this repository (so called `GeneratorObjects`) take the
+`GenerationEnvironment` as a parameter.
+
+Simply add a method named `gan_network` and have this method return the model.
+This was done to make the process flexible.
+
+Currently, this is used only in the `deep-music-visualizer` portion of the
+project. The API must match that of `deep-music-visualizer`.
 
 Project Organization
 ------------
