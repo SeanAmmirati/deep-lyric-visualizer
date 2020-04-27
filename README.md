@@ -1,5 +1,4 @@
-Deep Lyric Visualization Generator
-==============================
+# Deep Lyric Visualization Generator
 
 An enhancement to a [GAN music visualizer](https://github.com/msieg/deep-music-visualizer) that uses contextual lyric information
 in a song to select categories for visualization.
@@ -9,7 +8,7 @@ The result is something like this:
 
  [![YouTube video example.](https://img.youtube.com/vi/kkpWfGzoems/0.jpg)](https://www.youtube.com/watch?v=kkpWfGzoems)
 
-# Description
+## Description
 
 This project is the very start of some ideas surrounding trying to take some
 things that have already been done in this space in terms of music visualization
@@ -31,8 +30,8 @@ to make it more legible and useable.
 If you'd like to contribute, know more, or give any suggestions, please feel
 free to reach out.
 
-Pre-Requisites
---------------
+## Pre-Requisites
+
 
 In order to use this repository, you must first do a few things.
 
@@ -40,13 +39,14 @@ In order to use this repository, you must first do a few things.
 used a pretrained model. This project assumes use of the Wikipedia2Vec model.
 More information on this embedder is [here](https://wikipedia2vec.github.io/wikipedia2vec).
 
-## Using the default embedder
+### Embedder 
+#### Using the default embedder
 If you would like to proceed using the defaults, please download the correct
 pretrained model from [this link](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/).
 The correct pretrained model at this time is enwiki_20180420_100d.pkl.bz2, or
 the binary file for 100 dimensions. Save this file to PROJECT_ROOT/models.
 
-## Using another Wikipedia2Vec embedder
+#### Using another Wikipedia2Vec embedder
 Any of the [pretrained models](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/) can be used with this package quite easily.
 If you would like to use a different Wikipedia2Vec model, look in the
 `PROJECT_ROOT/src/config directory` for the `default_cfg.yaml` file.
@@ -57,7 +57,7 @@ You should see an entry like this:
 WIKIPEDIA_2_VEC_MODEL_NAME: enwiki_20180420_100d.pkl.bz2
 ```
 
-## Using another embedder entirely
+#### Using another embedder entirely
 If you would like to use another embedder, you should create a subclass of the
 `GenerationEnvironment` class in `generation_environment.py`. All of the
 objects in this repository (so called `GeneratorObjects`) take the
