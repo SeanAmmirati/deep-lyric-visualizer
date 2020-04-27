@@ -36,17 +36,19 @@ free to reach out.
 In order to use this repository, you must first do a few things.
 
 1. Select an appropriate word embedding model. You can train your own model, or
-used a pretrained model. This project assumes use of the Wikipedia2Vec model.
-More information on this embedder is [here](https://wikipedia2vec.github.io/wikipedia2vec).
+used a pretrained model. This project assumes use of the [Wikipedia2Vec model.](https://wikipedia2vec.github.io/wikipedia2vec).
 
-### Embedder 
+### Embedder
+
 #### Using the default embedder
+
 If you would like to proceed using the defaults, please download the correct
-pretrained model from [this link](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/).
+[pretrained model](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/).
 The correct pretrained model at this time is enwiki_20180420_100d.pkl.bz2, or
 the binary file for 100 dimensions. Save this file to PROJECT_ROOT/models.
 
 #### Using another Wikipedia2Vec embedder
+
 Any of the [pretrained models](https://wikipedia2vec.github.io/wikipedia2vec/pretrained/) can be used with this package quite easily.
 If you would like to use a different Wikipedia2Vec model, look in the
 `PROJECT_ROOT/src/config directory` for the `default_cfg.yaml` file.
@@ -58,6 +60,7 @@ WIKIPEDIA_2_VEC_MODEL_NAME: enwiki_20180420_100d.pkl.bz2
 ```
 
 #### Using another embedder entirely
+
 If you would like to use another embedder, you should create a subclass of the
 `GenerationEnvironment` class in `generation_environment.py`. All of the
 objects in this repository (so called `GeneratorObjects`) take the
@@ -142,5 +145,3 @@ Project Organization
 
 
 --------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
