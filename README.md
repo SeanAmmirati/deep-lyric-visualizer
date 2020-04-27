@@ -38,6 +38,10 @@ In order to use this repository, you must first do a few things.
 1. Select an appropriate word embedding model. You can train your own model, or
 used a pretrained model. This project assumes use of the [Wikipedia2Vec model.](https://wikipedia2vec.github.io/wikipedia2vec).
 
+2. Select an appropriate model to fit the General Adverserial Network (GAN).
+Again, you can train your own model or use a pretrained model. This project
+ assumes use of [BigGAN.](https://arxiv.org/abs/1809.11096)
+
 ### Embedder
 
 #### Using the default embedder
