@@ -8,6 +8,7 @@ from wikipedia2vec import Wikipedia2Vec
 
 from helpers import dict_assign, setup_logger, find_first_file_with_ext
 
+import re
 setup_logger()
 logger = logging.getLogger(__name__)
 
@@ -271,10 +272,16 @@ class WikipediaBigGANGenerationEnviornment(GenerationEnvironment):
         Returns:
             Wikipedia2Vec: A Wikipedia2Vec Model
         """
-        loc = self.model_loc('enwiki_20180420_100d.pkl')
-        self.wordvec_dim = 100
+        loc = self.model_loc(self.WIKIPEDIA_2_VEC_MODEL_NAME)
         logger.info(f'Loading Wikipedia2Vec word embeddings model from {loc}.')
         model = Wikipedia2Vec.load(loc)
+        logger.debug('Model loaded successfully.')
+        logger.debug('Extracting dimension from filename.')
+        dim = int(re.search('.*_(\d*)d\.',
+                            self.WIKIPEDIA_2_VEC_MODEL_NAME).group(1))
+        self.wordvec_dim = dim
+        logger.debug(f'Assuming dimension {dim} for {loc}.')
+
         return model
 
     def gan_network(self, resolution):

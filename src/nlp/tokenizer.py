@@ -20,16 +20,8 @@ class Tokenizer(GeneratorObject):
         self.tokens = None
 
         self.name = __name__
-        import pdb
-        pdb.set_trace()
 
         self.attrs = ['tokens']
-
-        if self.env.SAVE_FILETYPE == 'pickle':
-            self.genio = PickleGeneratorIO(
-                self, self.env)
-        elif self.env.SAVE_FILETYPE == 'yaml':
-            self.genio = YAMLGeneratorIO(self, self.env)
 
     def tokenize_phrase(self, phrase, process=True):
         tokens = word_tokenize(phrase)

@@ -13,3 +13,4 @@ DATA_DIR: '../data/processed'
 IMAGE_CLASS_FILENAME: image_classes
 CATEGORY_TOKEN_FILENAME: 'category_tokens'
 FULL_LYRIC_FILENAME: 'lyrics_with_categories'
+WIKIPEDIA_2_VEC_MODEL_NAME: enwiki_20180420_100d.pkl.bz2
