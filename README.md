@@ -3,7 +3,6 @@
 An enhancement to a [GAN music visualizer](https://github.com/msieg/deep-music-visualizer) that uses contextual lyric information
 in a song to select categories for visualization.
 
-
 The result is something like this:
 
  [![YouTube video example.](https://img.youtube.com/vi/kkpWfGzoems/0.jpg)](https://www.youtube.com/watch?v=kkpWfGzoems)
@@ -65,7 +64,7 @@ If you would like to use a different Wikipedia2Vec model, look in the
 
 You should see an entry like this:
 
-```
+```yaml
 WIKIPEDIA_2_VEC_MODEL_NAME: enwiki_20180420_100d.pkl.bz2
 ```
 
@@ -84,7 +83,6 @@ that of Wikipedia2Vec for this to work out of the box for methods used by the
 vectorizer class. As of this writing, the only such method is the
 `get_word_vector` method, which should be straight-forward to port from
 other models.
-
 
 ### GAN
 
@@ -106,76 +104,72 @@ This was done to make the process flexible.
 Currently, this is used only in the `deep-music-visualizer` portion of the
 project. The API must match that of `deep-music-visualizer`.
 
-Project Organization
-------------
+## Project Organization
 
-    ├── LICENSE
-    ├── Makefile                               <- Makefile with commands like `make data` or `make train` (Generation is in process, please be patient...)
-    ├── README.md                              <- The top-level README for developers using this project.
-    ├── data
-    │   ├── embeddings                         <- Storage for the word embeddings for particular songs.
-    │   ├── lyrics                             <- Where lyric folders are located. Please create a new folder here with the associated .lrc file to use this. More info in future iterations.
-    │   └── processed                          <- Processed vectorizations/other data that is timeconsuming to generate and will be consistent across runs.
-    │
-    ├── docs                                   <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models                                 <- Word vectorizers that were used (pre-trained). WikiToVec was used for this iteration.
-    │
-    ├── references                             <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── examples                               <- I stored .mp4 examples here for later use.
-    │
-    ├── requirements.txt                       <- The requirements file for reproducing the analysis environment, e.g.
-    │                                             generated with `pip freeze > requirements.txt` Look also for the environment.yaml
-    │
-    ├── setup.py                               <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                                    <- Source code for use in this project.
-    │   ├── __init__.py                        <- Makes src a Python module
-    │   │
-    │   ├── deep-music-visualizer              <- The original repo that this is inspired from. Tweaks were made to the vizualize.py function to integrate lyrical embeddings.
-    │   │
-    │   ├── generator                          <- Inheritable classes representing basic behaviors for the remainder of the classes. This contains information about where files should be loaded
-    │   │   │                                     from and saved to for a particular class.
-    │   │   │
-    │   │   ├─ generation_object.py            <- A generation object contains all of the information needed to generate from the environment. This is the most generic object of this project, and most
-    │   │   │                                    other classes inherit from it (or are being altered to inherit from it).
-    │   │   │
-    │   │   ├── generation_environment.py      <- An environment class that handles anything relating to the directory structure and environment which the code is being run in. Contains the abstract class
-    │   │   │                                     which can be used to use custom word embeddors and gan_networks. The default used for this project was Wikipedia2Vec and BigGAN but others can be specified.
-    │   │   │                                     This class also handles the loading of external files.
-    │   │   │
-    │   │   │
-    │   │   └─ generatorio.py                  <- GeneratorIO classes handle the saving and loading of the objects themselves for later use.
-    │   │
-    │   ├── image_categories                   <- Classes which handle the NLP surrounding the ImageNet categories.
-    │   │   │
-    │   │   ├── image_categories.py            <- Overall ImageCategory class. Holds the Vectorizer and Tokenizer within it.
-    │   │   │
-    │   │   ├── image_category_tokenizer.py    <- Handles Tokenization of the ImageNet categories.
-    │   │   │
-    │   │   └── image_category_vectorizer.py   <- Handles Vectorization of the ImageNet categories.
-    │   │
-    │   ├── lyrics                             <- Classes which handle the NLP and weighings surrounding the actual lyrics.
-    │   │   │
-    │   │   ├── lyrics.py                      <- Overall Lyrics class. Holds all objects related to the manipulation of lyrics.
-    │   │   │
-    │   │   ├── lyric_tokenizer.py             <- Handles Tokenization of the lyrics.
-    │   │   │
-    │   │   ├── lyric_vectorizer.py            <- Handles Vectorization of the lyrics.
-    │   │   │
-    │   │   └── lyric_weigher.py               <- Handles weighing of the lyrics (within a line, stanza, etc).
-    │   │
-    │   ├── nlp                                <- Classes which handle NLP operations used throughout -- i.e. for both Lyrics and ImageNet. Can be expanded to other usecases.
-    │   │   │
-    │   │   ├── tokenizer.py                   <- A general tokenizer class that performs the necessary tokenizations. Inherited in lyrics/image_categories.
-    │   │   │
-    │   │   ├── vectorizer.py                  <- A general vectorizer class that performs the necessary tokenizations. Inherited in lyrics/image_categories.
-    │   │   │
-    │   │   └── wordvector_similarity.py       <- A helper class to quantify wordvector similarity, to be used for comparisons elsewhere throughout the code.
-    │   │
-    │   └── helpers.py                         <- Generic helper functions useful in various usecases.
-    │
-    └── tox.ini                                <- tox file with settings for running tox; see tox.testrun.org
-
-
---------
+├── LICENSE
+├── Makefile                               <- Makefile with commands like `make data` or `make train` (Generation is in process, please be patient...)
+├── README.md                              <- The top-level README for developers using this project.
+├── data
+│   ├── embeddings                         <- Storage for the word embeddings for particular songs.
+│   ├── lyrics                             <- Where lyric folders are located. Please create a new folder here with the associated .lrc file to use this. More info in future iterations.
+│   └── processed                          <- Processed vectorizations/other data that is timeconsuming to generate and will be consistent across runs.
+│
+├── docs                                   <- A default Sphinx project; see sphinx-doc.org for details
+│
+├── models                                 <- Word vectorizers that were used (pre-trained). WikiToVec was used for this iteration.
+│
+├── references                             <- Data dictionaries, manuals, and all other explanatory materials.
+│
+├── examples                               <- I stored .mp4 examples here for later use.
+│
+├── requirements.txt                       <- The requirements file for reproducing the analysis environment, e.g.
+│                                             generated with `pip freeze > requirements.txt` Look also for the environment.yaml
+│
+├── setup.py                               <- makes project pip installable (pip install -e .) so src can be imported
+├── src                                    <- Source code for use in this project.
+│   ├── __init__.py                        <- Makes src a Python module
+│   │
+│   ├── deep-music-visualizer              <- The original repo that this is inspired from. Tweaks were made to the vizualize.py function to integrate lyrical embeddings.
+│   │
+│   ├── generator                          <- Inheritable classes representing basic behaviors for the remainder of the classes. This contains information about where files should be loaded
+│   │   │                                     from and saved to for a particular class.
+│   │   │
+│   │   ├─ generation_object.py            <- A generation object contains all of the information needed to generate from the environment. This is the most generic object of this project, and most
+│   │   │                                    other classes inherit from it (or are being altered to inherit from it).
+│   │   │
+│   │   ├── generation_environment.py      <- An environment class that handles anything relating to the directory structure and environment which the code is being run in. Contains the abstract class
+│   │   │                                     which can be used to use custom word embeddors and gan_networks. The default used for this project was Wikipedia2Vec and BigGAN but others can be specified.
+│   │   │                                     This class also handles the loading of external files.
+│   │   │
+│   │   │
+│   │   └─ generatorio.py                  <- GeneratorIO classes handle the saving and loading of the objects themselves for later use.
+│   │
+│   ├── image_categories                   <- Classes which handle the NLP surrounding the ImageNet categories.
+│   │   │
+│   │   ├── image_categories.py            <- Overall ImageCategory class. Holds the Vectorizer and Tokenizer within it.
+│   │   │
+│   │   ├── image_category_tokenizer.py    <- Handles Tokenization of the ImageNet categories.
+│   │   │
+│   │   └── image_category_vectorizer.py   <- Handles Vectorization of the ImageNet categories.
+│   │
+│   ├── lyrics                             <- Classes which handle the NLP and weighings surrounding the actual lyrics.
+│   │   │
+│   │   ├── lyrics.py                      <- Overall Lyrics class. Holds all objects related to the manipulation of lyrics.
+│   │   │
+│   │   ├── lyric_tokenizer.py             <- Handles Tokenization of the lyrics.
+│   │   │
+│   │   ├── lyric_vectorizer.py            <- Handles Vectorization of the lyrics.
+│   │   │
+│   │   └── lyric_weigher.py               <- Handles weighing of the lyrics (within a line, stanza, etc).
+│   │
+│   ├── nlp                                <- Classes which handle NLP operations used throughout -- i.e. for both Lyrics and ImageNet. Can be expanded to other usecases.
+│   │   │
+│   │   ├── tokenizer.py                   <- A general tokenizer class that performs the necessary tokenizations. Inherited in lyrics/image_categories.
+│   │   │
+│   │   ├── vectorizer.py                  <- A general vectorizer class that performs the necessary tokenizations. Inherited in lyrics/image_categories.
+│   │   │
+│   │   └── wordvector_similarity.py       <- A helper class to quantify wordvector similarity, to be used for comparisons elsewhere throughout the code.
+│   │
+│   └── helpers.py                         <- Generic helper functions useful in various usecases.
+│
+└── tox.ini                                <- tox file with settings for running tox; see tox.testrun.org
