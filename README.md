@@ -105,7 +105,7 @@ Currently, this is used only in the `deep-music-visualizer` portion of the
 project. The API must match that of `deep-music-visualizer`.
 
 ## Project Organization
-
+```
 ├── LICENSE
 ├── Makefile                               <- Makefile with commands like `make data` or `make train` (Generation is in process, please be patient...)
 ├── README.md                              <- The top-level README for developers using this project.
@@ -173,3 +173,4 @@ project. The API must match that of `deep-music-visualizer`.
 │   └── helpers.py                         <- Generic helper functions useful in various usecases.
 │
 └── tox.ini                                <- tox file with settings for running tox; see tox.testrun.org
+```

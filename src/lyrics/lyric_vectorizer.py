@@ -29,7 +29,7 @@ class LyricVectorizer(Vectorizer):
         this operation to avoid recomputation on identical tokens.
 
         Args:
-            token_list (list list [str]): A list of list of tokens, one
+            token_list (list [list [str]]): A list of list of tokens, one
             for each line of the song. (For instance
             [["somewhere"]])
 
