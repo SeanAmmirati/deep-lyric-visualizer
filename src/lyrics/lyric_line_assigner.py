@@ -9,8 +9,9 @@ from nlp.wordvector_similarity import (CosineWordVectorSimilarity,
 
 class LyricLineAssigner:
 
-    def __init__(self, weighing_type='eq', similarity_metric='cosine', topic_selector_type='max_max',
-                 weighing_obj=None, similarity_obj=None, topic_selector=None):
+    def __init__(self, weighing_type='eq', similarity_metric='cosine',
+                 topic_selector_type='max_max', weighing_obj=None,
+                 similarity_obj=None, topic_selector=None):
         if similarity_obj:
             self.similarity = similarity_obj
         elif similarity_metric == 'cosine':
