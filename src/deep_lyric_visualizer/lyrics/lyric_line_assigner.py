@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 
-from lyrics.lyric_weigher import ConeLyricWeigher, EqualLyricWeigher
-from nlp.topic_selector import MaxMaxSelector, MeanMaxSelector
-from nlp.wordvector_similarity import (CosineWordVectorSimilarity,
-                                       EuclidWordVectorSimilarity)
+from deep_lyric_visualizer.lyrics.lyric_weigher import ConeLyricWeigher, EqualLyricWeigher
+from deep_lyric_visualizer.nlptopic_selector import MaxMaxSelector, MeanMaxSelector
+from deep_lyric_visualizer.nlpwordvector_similarity import (CosineWordVectorSimilarity,
+                                                            EuclidWordVectorSimilarity)
 
 
 class LyricLineAssigner:

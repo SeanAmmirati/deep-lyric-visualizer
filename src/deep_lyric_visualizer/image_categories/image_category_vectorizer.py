@@ -5,7 +5,7 @@ from deep_lyric_visualizer.generator.generation_environment import (GenerationEn
                                                                     WikipediaBigGANGenerationEnviornment)
 from deep_lyric_visualizer.generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 
-from nlp.vectorizer import Vectorizer
+from deep_lyric_visualizer.nlpvectorizer import Vectorizer
 import numpy as np
 setup_logger()
 logger = logging.getLogger(__name__)

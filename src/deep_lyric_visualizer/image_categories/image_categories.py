@@ -1,8 +1,8 @@
 import logging
 from deep_lyric_visualizer.helpers import setup_logger
 
-from image_categories.image_category_tokenizer import ImageCategoryTokenizer
-from image_categories.image_category_vectorizer import ImageCategoryVectorizer
+from deep_lyric_visualizer.image_categories.image_category_tokenizer import ImageCategoryTokenizer
+from deep_lyric_visualizer.image_categories.image_category_vectorizer import ImageCategoryVectorizer
 
 from deep_lyric_visualizer.generator.generator_object import GeneratorObject
 

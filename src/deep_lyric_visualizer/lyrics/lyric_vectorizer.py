@@ -6,7 +6,7 @@ from deep_lyric_visualizer.helpers import setup_logger
 from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
 import numpy as np
 
-from nlp.vectorizer import Vectorizer
+from deep_lyric_visualizer.nlpvectorizer import Vectorizer
 setup_logger()
 logger = logging.getLogger(__name__)
 

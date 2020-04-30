@@ -1,14 +1,14 @@
 import logging
 from deep_lyric_visualizer.helpers import setup_logger, _extract_name_from_path
 
-from lyrics.lyric_tokenizer import LyricTokenizer
-from lyrics.lyric_vectorizer import LyricVectorizer
+from deep_lyric_visualizer.lyrics.lyric_tokenizer import LyricTokenizer
+from deep_lyric_visualizer.lyrics.lyric_vectorizer import LyricVectorizer
 
-from lyrics.lyric_line_assigner import LyricLineAssigner
+from deep_lyric_visualizer.lyrics.lyric_line_assigner import LyricLineAssigner
 
 from deep_lyric_visualizer.generator.object import GeneratorObject
 
-from image_categories import ImageCategories
+from deep_lyric_visualizer.image_categories import ImageCategories
 
 from pylrc import parser
 
