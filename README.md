@@ -5,7 +5,7 @@ in a song to select categories for visualization.
 
 The result is something like this:
 
- [![YouTube video example.](https://img.youtube.com/vi/kkpWfGzoems/2.jpg)](https://www.youtube.com/watch?v=kkpWfGzoems)
+ [![YouTube video example.](https://img.youtube.com/vi/kkpWfGzoems/0.jpg)](https://www.youtube.com/watch?v=kkpWfGzoems)
 
 ## Description
 
