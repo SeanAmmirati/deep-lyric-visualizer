@@ -1,9 +1,9 @@
 
 import logging
 from helpers import setup_logger, _extract_name_from_path
-from generator.generation_environment import (GenerationEnvironment,
-                                              WikipediaBigGANGenerationEnviornment)
-from generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
+from deep_lyric_visualizer.generator.generation_environment import (GenerationEnvironment,
+                                                                    WikipediaBigGANGenerationEnviornment)
+from deep_lyric_visualizer.generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 
 from nlp.vectorizer import Vectorizer
 import numpy as np

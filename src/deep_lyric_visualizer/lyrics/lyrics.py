@@ -6,7 +6,7 @@ from lyrics.lyric_vectorizer import LyricVectorizer
 
 from lyrics.lyric_line_assigner import LyricLineAssigner
 
-from generator_object import GeneratorObject
+from deep_lyric_visualizer.generator.object import GeneratorObject
 
 from image_categories import ImageCategories
 

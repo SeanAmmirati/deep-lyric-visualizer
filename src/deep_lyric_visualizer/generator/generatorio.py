@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
-from generator.generation_environment import (GenerationEnvironment,
-                                              WikipediaBigGANGenerationEnviornment)
+from deep_lyric_visualizer.generator.generation_environment import (GenerationEnvironment,
+                                                                    WikipediaBigGANGenerationEnviornment)
 import logging
 from helpers import setup_logger
 

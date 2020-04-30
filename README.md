@@ -9,14 +9,11 @@ The result is something like this:
 
 ## Description
 
-This project is the very start of some ideas surrounding trying to take some
-things that have already been done in this space in terms of music visualization
-using GAN (from [this repository](https://github.com/msieg/deep-music-visualizer))
-and adding a lyrical element.
+This project is the start of some ideas surrounding trying to build upon the
+ music visualization using GAN from [this repository](https://github.com/msieg/deep-music-visualizer) and adding a lyrical element.
 
-This is very simplistic at the moment, and was part of a side project for fun.
 To achieve this, this code vectorizes the lyrics to the song and compares them
-to the imagenet categories. Then, when running the GAN, it will use the categories
+to the ImageNet categories. Then, when running the GAN, it will use the categories
 most similar to those in current lyrics as evaluated by the simple NLP model.
 
 Similarity is considered at the word, line, and stanza level. This is a rough

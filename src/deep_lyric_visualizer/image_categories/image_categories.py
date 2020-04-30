@@ -4,7 +4,7 @@ from helpers import setup_logger
 from image_categories.image_category_tokenizer import ImageCategoryTokenizer
 from image_categories.image_category_vectorizer import ImageCategoryVectorizer
 
-from generator.generator_object import GeneratorObject
+from deep_lyric_visualizer.generator.generator_object import GeneratorObject
 
 setup_logger()
 logger = logging.getLogger(__name__)
