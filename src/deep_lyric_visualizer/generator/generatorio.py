@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from deep_lyric_visualizer.generator.generation_environment import (GenerationEnvironment,
                                                                     WikipediaBigGANGenerationEnviornment)
 import logging
-from helpers import setup_logger
+from deep_lyric_visualizer.helpers import setup_logger
 
 import os
 

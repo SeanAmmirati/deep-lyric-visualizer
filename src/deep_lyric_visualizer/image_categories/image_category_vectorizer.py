@@ -1,6 +1,6 @@
 
 import logging
-from helpers import setup_logger, _extract_name_from_path
+from deep_lyric_visualizer.helpers import setup_logger, _extract_name_from_path
 from deep_lyric_visualizer.generator.generation_environment import (GenerationEnvironment,
                                                                     WikipediaBigGANGenerationEnviornment)
 from deep_lyric_visualizer.generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO

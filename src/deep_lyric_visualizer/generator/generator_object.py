@@ -1,7 +1,7 @@
 from deep_lyric_visualizer.generator.generation_environment import (GenerationEnvironment,
                                                                     WikipediaBigGANGenerationEnviornment)
 from deep_lyric_visualizer.generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
-from helpers import setup_logger
+from deep_lyric_visualizer.helpers import setup_logger
 import logging
 
 setup_logger()

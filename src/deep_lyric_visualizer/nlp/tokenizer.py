@@ -1,6 +1,6 @@
 
 import logging
-from helpers import setup_logger, dict_assign, find_first_file_with_ext
+from deep_lyric_visualizer.helpers import setup_logger, dict_assign, find_first_file_with_ext
 
 from deep_lyric_visualizer.generator.generator_object import GeneratorObject
 

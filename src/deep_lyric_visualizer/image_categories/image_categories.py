@@ -1,5 +1,5 @@
 import logging
-from helpers import setup_logger
+from deep_lyric_visualizer.helpers import setup_logger
 
 from image_categories.image_category_tokenizer import ImageCategoryTokenizer
 from image_categories.image_category_vectorizer import ImageCategoryVectorizer

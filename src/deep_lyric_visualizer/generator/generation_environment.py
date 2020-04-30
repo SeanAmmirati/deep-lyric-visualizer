@@ -6,7 +6,7 @@ import yaml
 from pytorch_pretrained_biggan import BigGAN
 from wikipedia2vec import Wikipedia2Vec
 
-from helpers import dict_assign, setup_logger, find_first_file_with_ext
+from deep_lyric_visualizer.helpers import dict_assign, setup_logger, find_first_file_with_ext
 
 import re
 setup_logger()
@@ -37,7 +37,9 @@ class GenerationEnvironment(ABC):
         else:
             logger.info(
                 'No configuration supplied. Using default configuration file.')
-            self._config_file_loc = 'config/default_cfg.yaml'
+            two_dots = os.path.dirname(os.path.dirname(__file__))
+            self._config_file_loc = os.path.join(
+                two_dots, 'config/default_cfg.yaml')
 
         logger.info(f'Loading configuration from {self._config_file_loc}')
         if os.path.exists(self._config_file_loc):
@@ -66,6 +68,38 @@ class GenerationEnvironment(ABC):
         dict_assign(self, self.cfg)
         self.wordvec_dim = 0
 
+        if not self.PROJECT_PATH:
+            self.PROJECT_PATH = self.n_dot(4, __file__)
+
+    def n_dot(self, n, path):
+        """Helper function that performs the equivalent of . * n dots from a file's
+        directory.
+
+        Args:
+            n (int): Number of directories to move up (1 will be the files dir)
+            path (str): The file to move up from
+
+        Returns:
+            [type]: [description]
+        """
+        ret = path
+
+        for _ in range(n):
+            ret = os.path.dirname(ret)
+        return ret
+
+    def create_abs_path(self, rel_path):
+        """Creates the absolute directory path for a relative directory path
+        as defined in the config file.
+
+        Args:
+            rel_path (str): a path relative to the project directory root.
+
+        Returns:
+            str: the full, absolute directory path
+        """
+        return os.path.join(self.PROJECT_PATH, rel_path)
+
     def song_lyric_dir(self, songname):
         """Returns the full path of a particular song's lyric directory.
 
@@ -75,7 +109,8 @@ class GenerationEnvironment(ABC):
         Returns:
             str: The directory containing lyric data for the song.
         """
-        return os.path.join(self.LYRIC_PATH, songname)
+        abs_path = self.create_abs_path(self.LYRIC_PATH)
+        return os.path.join(abs_path, songname)
 
     def song_embeddings_dir(self, songname):
         """Returns the full path of a particular song's embedding directory.
@@ -86,7 +121,8 @@ class GenerationEnvironment(ABC):
         Returns:
             str: The directory containing embedding data for the song.
         """
-        return os.path.join(self.SONG_EMBEDDING_PATH, songname)
+        abs_path = self.create_abs_path(self.SONG_EMBEDDING_PATH)
+        return os.path.join(abs_path, songname)
 
     def song_lyric_filename(self, songname):
         """Returns the full path of a particular song's token file.
@@ -122,7 +158,8 @@ class GenerationEnvironment(ABC):
         Returns:
             str: The full path of the model
         """
-        return os.path.join(self.MODELS_PATH, model_name)
+        abs_path = self.create_abs_path(self.MODELS_PATH)
+        return os.path.join(abs_path, model_name)
 
     def image_class_location(self):
         """Returns the location of the image classes file
@@ -131,7 +168,9 @@ class GenerationEnvironment(ABC):
             str: A full path to the file with the image classes
         """
         fn_with_ext = self.IMAGE_CLASS_FILENAME + '.' + self.SAVE_FILETYPE
-        return os.path.join(self.DATA_DIR, fn_with_ext)
+        abs_path = self.create_abs_path(self.DATA_DIR)
+
+        return os.path.join(abs_path, fn_with_ext)
 
     def class_embeddings_filename(self):
         """Returns the location of the class embeddings file
@@ -139,9 +178,11 @@ class GenerationEnvironment(ABC):
         Returns:
             str: full path to the class embeddings file
         """
-        fn_with_ext = self.CATEGORY_EMBEDDING_FILENAME + '.'\
-            + self.SAVE_FILETYPE
-        return os.path.join(self.DATA_DIR, fn_with_ext)
+        fn_with_ext = self.CATEGORY_EMBEDDING_FILENAME + '.'
+        + self.SAVE_FILETYPE
+        abs_path = self.create_abs_path(self.DATA_DIR)
+
+        return os.path.join(abs_path, fn_with_ext)
 
     def class_token_filename(self):
         """Returns the location of the tokenized classes for ImageNet
@@ -150,7 +191,8 @@ class GenerationEnvironment(ABC):
             str: A full path to the file with the image class tokens
         """
         fn_with_ext = self.CATEGORY_TOKEN_FILENAME + '.' + self.SAVE_FILETYPE
-        return os.path.join(self.DATA_DIR, fn_with_ext)
+        abs_path = self.create_abs_path(self.DATA_DIR)
+        return os.path.join(abs_path, fn_with_ext)
 
     def complete_lyrics_filename(self, songname):
         """Returns the location of the processed lyrics, with categories

@@ -1,0 +1,17 @@
+PROJECT_PATH: null
+LYRIC_PATH: data/lyrics
+MODELS_PATH: models
+ADDITIONAL_STOPWORDS:
+  - null
+REMOVED_STOPWORDS:
+  - null
+SONG_EMBEDDING_PATH: data/embeddings
+TOKEN_FILENAME: lyric_token_list
+LYRIC_EMBEDDING_FILENAME: lyric_embeddings
+CATEGORY_EMBEDDING_FILENAME: category_embeddings
+SAVE_FILETYPE: yaml
+DATA_DIR: data/processed
+IMAGE_CLASS_FILENAME: image_classes
+CATEGORY_TOKEN_FILENAME: category_tokens
+FULL_LYRIC_FILENAME: lyrics_with_categories
+WIKIPEDIA_2_VEC_MODEL_NAME: enwiki_20180420_100d.pkl.bz2

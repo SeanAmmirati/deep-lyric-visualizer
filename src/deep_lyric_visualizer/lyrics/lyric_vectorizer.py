@@ -2,7 +2,7 @@ import os
 import yaml
 import pickle
 import logging
-from helpers import setup_logger
+from deep_lyric_visualizer.helpers import setup_logger
 from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
 import numpy as np
 

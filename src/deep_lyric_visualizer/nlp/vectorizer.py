@@ -2,7 +2,7 @@ import os
 import yaml
 import pickle
 import logging
-from helpers import setup_logger
+from deep_lyric_visualizer.helpers import setup_logger
 from deep_lyric_visualizer.generator.generator_object import GeneratorObject
 from deep_lyric_visualizer.generator.generatorio import PickleGeneratorIO, YAMLGeneratorIO
 
