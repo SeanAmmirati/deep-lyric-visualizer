@@ -37,17 +37,18 @@ class GeneratorObject:
 
             gen_env = WikipediaBigGANGenerationEnviornment()
 
-        elif __name__ != '__main__':
-            logger.debug('Passed environment class from other class')
-
         else:
+            if __name__ != '__main__':
+                logger.debug('Passed environment class from other class')
+
+            else:
+                logger.info('Custom enviornment class passed.')
+
             if not isinstance(gen_env, GenerationEnvironment):
                 logger.error(
                     'Argument gen_env is not a GenerationEnvironment instance.'
                     ' You must pass the appropriate object here.')
                 raise ValueError('Not a Generation Environment instance.')
-            else:
-                logger.info('Custom enviornment class passed.')
 
         self.env = gen_env
 
