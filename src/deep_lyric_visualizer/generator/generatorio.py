@@ -15,38 +15,19 @@ logger = logging.getLogger(__name__)
 
 class GeneratorIO(ABC):
 
-    def __init__(self, obj, gen_env=None):
+    def __init__(self, obj):
         """An class for handling In-Out operations of generator objects.
 
         Args:
             obj (GeneratorObject): a Generator object to save data from or load
             data into
-            gen_env (GenerationEnvironment, optional): The environment which is
-            used to find default paths and models. Defaults to None.
 
         Raises:
             ValueError: Raises value error when passed an object which is not
             an environment object.
         """
-        logger.debug('Started initialization of LyricVectorizer class.')
 
-        if not gen_env:
-            logger.info(
-                'No passed enviornment class. '
-                'Defaulting to Wikipedia2Vec and BigGAN.')
-
-            gen_env = WikipediaBigGANGenerationEnviornment()
-
-        else:
-            if not isinstance(gen_env, GenerationEnvironment):
-                logger.error(
-                    'Argument gen_env is not a GenerationEnvironment instance.'
-                    ' You must pass the appropriate object here.')
-                raise ValueError('Not a Generation Environment instance.')
-            else:
-                logger.info('Custom enviornment class passed.')
-
-        self.env = gen_env
+        self.env = obj.env
         self.word_embedder = self.env.word_embedder()
 
         self.word_to_vec = {}
