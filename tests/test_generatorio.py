@@ -4,6 +4,7 @@ from deep_lyric_visualizer.generator.generation_environment import (GenerationEn
 from deep_lyric_visualizer.generator.generator_object import (GeneratorObject)
 
 from unittest.mock import Mock, patch
+import deep_lyric_visualizer.generator.generatorio
 
 
 class TestGeneratorIO:
@@ -64,3 +65,18 @@ class TestGeneratorIO:
         assert genio.save_loc == generic_env_mock.complete_lyrics_filename(
             'anything')
         assert genio.save_loc == ret
+
+    @patch.multiple(GeneratorIO, __abstractmethods__=set())
+    @patch('deep_lyric_visualizer.generator.generatorio.os')
+    def test_make_save_locations(self, os_mock):
+        generic_env_mock = Mock(GenerationEnvironment)
+
+        os_mock.path.exists = lambda x: True
+        os_mock.mkdir = lambda x: True
+
+        generic_object_mock = Mock(GeneratorObject)
+        generic_object_mock.env = generic_env_mock
+        generic_object_mock.name = 'lyric_tokenizer'
+
+        genio = GeneratorIO(generic_object_mock)
+        genio.make_save_locations('test')
