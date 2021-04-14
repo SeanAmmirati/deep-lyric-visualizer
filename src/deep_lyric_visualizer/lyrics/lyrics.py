@@ -6,9 +6,9 @@ from deep_lyric_visualizer.lyrics.lyric_vectorizer import LyricVectorizer
 
 from deep_lyric_visualizer.lyrics.lyric_line_assigner import LyricLineAssigner
 
-from deep_lyric_visualizer.generator.object import GeneratorObject
+from deep_lyric_visualizer.generator.generator_object import GeneratorObject
 
-from deep_lyric_visualizer.image_categories import ImageCategories
+from deep_lyric_visualizer.image_categories.image_categories import ImageCategories
 
 from pylrc import parser
 

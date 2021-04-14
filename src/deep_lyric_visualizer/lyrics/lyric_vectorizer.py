@@ -3,10 +3,10 @@ import yaml
 import pickle
 import logging
 from deep_lyric_visualizer.helpers import setup_logger
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
+from deep_lyric_visualizer.generator.generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
 import numpy as np
 
-from deep_lyric_visualizer.nlpvectorizer import Vectorizer
+from deep_lyric_visualizer.nlp.vectorizer import Vectorizer
 setup_logger()
 logger = logging.getLogger(__name__)
 
