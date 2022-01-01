@@ -52,3 +52,9 @@ MANIFEST
 .devcontainer
 logs
 models
+
+# yaml and pickle files
+.yaml
+.yml
+.pickle
+.pkl

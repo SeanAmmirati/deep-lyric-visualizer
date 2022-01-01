@@ -2,8 +2,8 @@
 import logging
 from deep_lyric_visualizer.helpers import setup_logger, dict_assign, find_first_file_with_ext
 
-from generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
-from tokenizer import Tokenizer
+from deep_lyric_visualizer.generator.generation_environment import GenerationEnvironment, WikipediaBigGANGenerationEnviornment
+from nlp.tokenizer import Tokenizer
 
 import re
 import os

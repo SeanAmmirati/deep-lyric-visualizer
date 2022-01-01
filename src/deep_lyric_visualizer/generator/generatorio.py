@@ -56,19 +56,19 @@ class GeneratorIO(ABC):
             str: The path of the save location of the file for that object.
         """
 
-        if self.obj.name == 'lyric_tokenizer':
+        if self.obj.name.endswith('lyric_tokenizer'):
             self.save_loc = self.env.song_lyric_filename(songname)
 
-        if self.obj.name == 'lyric_vectorizer':
+        if self.obj.name.endswith('lyric_vectorizer'):
             self.save_loc = self.env.song_embeddings_filename(songname)
 
-        if self.obj.name == 'image_category_vectorizer':
+        if self.obj.name.endswith('image_category_vectorizer'):
             self.save_loc = self.env.class_embeddings_filename()
 
-        if self.obj.name == 'image_category_tokenizer':
+        if self.obj.name.endswith('image_category_tokenizer'):
             self.save_loc = self.env.class_token_filename()
 
-        if self.obj.name == 'lyrics':
+        if self.obj.name.endswith('lyrics'):
             self.save_loc = self.env.complete_lyrics_filename(songname)
 
         return self.save_loc
@@ -86,7 +86,8 @@ class GeneratorIO(ABC):
             songname)
         dir_name = os.path.dirname(full_path)
         dir_hierarchy = []
-        while dir_name:
+
+        while dir_name != '/' and dir_name:
             dir_hierarchy.append(dir_name)
             dir_name = os.path.dirname(dir_name)
 
@@ -239,7 +240,7 @@ class YAMLGeneratorIO(GeneratorIO):
             Object: The original type of the passed attribute, unless it was
             an array, in which case it will be returned as a list.
         """
-        if isinstance(attr, np.array):
+        if isinstance(attr, np.ndarray):
             return attr.tolist()
         else:
             return attr

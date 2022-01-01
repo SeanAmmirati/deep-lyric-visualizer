@@ -2,7 +2,7 @@
 import logging
 from deep_lyric_visualizer.helpers import setup_logger, _extract_name_from_path
 
-from deep_lyric_visualizer.nlptokenizer import Tokenizer
+from deep_lyric_visualizer.nlp.tokenizer import Tokenizer
 from deep_lyric_visualizer.image_categories.image_category_vectorizer import ImageCategoryVectorizer
 
 

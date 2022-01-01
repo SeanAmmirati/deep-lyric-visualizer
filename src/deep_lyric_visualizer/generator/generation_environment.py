@@ -178,8 +178,7 @@ class GenerationEnvironment(ABC):
         Returns:
             str: full path to the class embeddings file
         """
-        fn_with_ext = self.CATEGORY_EMBEDDING_FILENAME + '.'
-        + self.SAVE_FILETYPE
+        fn_with_ext = self.CATEGORY_EMBEDDING_FILENAME + '.' + self.SAVE_FILETYPE
         abs_path = self.create_abs_path(self.DATA_DIR)
 
         return os.path.join(abs_path, fn_with_ext)

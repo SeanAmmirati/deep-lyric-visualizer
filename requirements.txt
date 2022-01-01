@@ -19,7 +19,7 @@ certifi==2019.11.28
 cffi==1.13.2
 chardet==3.0.4
 Click==7.0
-cryptography==2.8
+cryptography==3.2
 cycler==0.10.0
 decorator==4.4.1
 docutils==0.15.2
@@ -63,7 +63,7 @@ PySocks==1.7.1
 python-dateutil==2.8.1
 pytorch-pretrained-biggan==0.1.1
 pytz==2019.3
-PyYAML==5.2
+PyYAML==5.4
 requests==2.22.0
 resampy==0.2.2
 rope==0.14.0

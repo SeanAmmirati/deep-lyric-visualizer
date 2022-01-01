@@ -54,6 +54,6 @@ class GeneratorObject:
 
         if self.env.SAVE_FILETYPE == 'pickle':
             self.genio = PickleGeneratorIO(
-                self, self.env)
+                self)
         elif self.env.SAVE_FILETYPE == 'yaml':
-            self.genio = YAMLGeneratorIO(self, self.env)
+            self.genio = YAMLGeneratorIO(self)

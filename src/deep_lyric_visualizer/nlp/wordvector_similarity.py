@@ -21,7 +21,8 @@ class WordVectorSimilarity(ABC):
 class CosineWordVectorSimilarity(WordVectorSimilarity):
 
     def cosine_similarity(self, v1, array):
-
+        import pdb
+        pdb.set_trace
         return pd.Series(np.dot(array, v1) / (np.linalg.norm(v1) * np.linalg.norm(array, axis=1)))
 
     def calculate_similarities(self, against_vector, candidate_vectors):
