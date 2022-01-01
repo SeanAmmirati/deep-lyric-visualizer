@@ -78,7 +78,7 @@ class GeneratorIO(ABC):
         not exist.
 
         Args:
-            songname ([type], optional): name of the song, if necessary.
+            songname (string, optional): name of the song, if necessary.
             Defaults to None.
         """
 

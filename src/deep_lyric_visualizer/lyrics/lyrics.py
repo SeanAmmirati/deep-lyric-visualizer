@@ -21,7 +21,21 @@ logger = logging.getLogger(__name__)
 class Lyrics(GeneratorObject):
 
     def __init__(self, songname, tokenizer=None, vectorizer=None, gen_env=None):
+        """A class to handle the tokenization, vectoorization, and weighing
+        of lyrics.
 
+        Args:
+            songname (str): The name of the song to vectorize
+            tokenizer (nlp.Tokenizer, optional): The tokenizer to
+            use when tokenizing lyrics. Defaults to None, which will use the
+            lyric_tokenizer in this directory.
+            vectorizer (nlp.Vectorizer, optional): [description]. Defaults to None.
+            gen_env ([type], optional): [description]. Defaults to None.
+
+        Raises:
+            ValueError: [description]
+            ValueError: [description]
+        """
         super().__init__(gen_env)
         self.name = __name__ if __name__ != '__main__' else _extract_name_from_path(
             __file__)
