@@ -506,11 +506,11 @@ clip = clip.set_audio(aud)
 
 # Add used_classes and lyrics as subtitles
 if subtitles:
-    lyrics_by_frame = lyric_dfs[0]['lyrics'].tolist()
+    lyrics_by_frame = lyric_df.loc[lyric_df['topic'] == 0, 'lyrics'].tolist()
 
     last_cat = universal
     srt_str = ''
-    with open('image_classes.yml', 'r') as f:
+    with open('../data/processed/image_classes.yaml', 'r') as f:
         class_to_name = yaml.load(f)
 
     start_time = 0
@@ -532,15 +532,15 @@ if subtitles:
     with open('test_upper.srt', 'w') as f:
         f.write(srt_str)
 
-    lyric_dfs[0]['end'] = pd.to_timedelta(
-        '00:' + lyric_dfs[0]['end'])
+    lyric_df['end'] = lyric_df.groupby(
+        'topic')['time'].shift(-1).fillna(method='ffill')
 
     with open('test_lower.srt', 'w') as f:
-        for i, row in lyric_dfs[0].iterrows():
+        for i, row in lyric_df.loc[lyric_df['topic'] == 0].iterrows():
             if pd.isnull(row['end']):
                 continue
             srt_block = Subtitle(
-                i + 1, row['start'], row['end'], row['lyrics']).to_srt()
+                i + 1, row['time'], row['end'], row['lyrics']).to_srt()
             f.write(srt_block)
 
     clip.margin(top=110, bottom=110)

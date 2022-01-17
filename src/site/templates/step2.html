@@ -24,11 +24,12 @@
   </h2>
   </br>
   </br>
-  <h1>Step 1:<h1>
-  <h1>Upload a MP3 File to Visualize</h1>
-  <form action="/"
+  <h1>Step 2:<h1>
+  <h1>Upload a .LRC File With The Lyrics</h1>
+  <h2>To do this, use the <a href="https://www.lrcgenerator.com">LRC Generator</a>. This will generate a LRC file, which encodes the timing information </br>for the lyrics. If you would like to not use lyrics, you can simply type a word that you wish the visualizer to use to visualize. </br>If you want, you can use any text, used at any point in the song (it doesn't have to be lyrics), and this will inform the images.</h2>
+  <form action="/step2"
       class="dropzone"
-      id="songdrop"></form>
+      id="lrcdrop"></form>
 
   <script src="{{ url_for('static',filename='js/script.js') }}"></script>
 

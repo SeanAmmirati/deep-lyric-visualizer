@@ -35,5 +35,5 @@ handlers:
 
 
 root:
-  level: INFO
+  level: DEBUG
   handlers: [console, info_file_handler, error_file_handler]
