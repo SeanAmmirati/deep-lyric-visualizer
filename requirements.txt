@@ -47,7 +47,7 @@ moviepy==0.2.3.5
 mwparserfromhell==0.5.4
 nltk==3.4.5
 numba==0.46.0
-numpy==1.17.4
+numpy==1.21.0
 olefile==0.46
 pandas==0.25.3
 Pillow>=6.2.2
